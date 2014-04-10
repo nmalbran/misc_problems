@@ -39,8 +39,11 @@ M5 = [['A', 'B', 'C', 'D', 'E'],
 SP5 = 'AFKPUVWXYTOJEDCBGLQRSNIHM'
 L5  = 'ABCDEFGHIJKLMNOPQRSTUVWXY'
 
-def spiral_matrix_print(M):
-    C = len(M)
+def spiral_matrix_print(M, bonus=False):
+    if bonus:
+        C = int(len(M) ** (0.5))
+    else:
+        C = len(M)
 
     i = 0; j = 0 # Index to print
 
@@ -57,7 +60,10 @@ def spiral_matrix_print(M):
     solution = ''
 
     while ci < T:
-        solution += M[j][i]
+        if bonus:
+            solution += M[j * C + i]
+        else:
+            solution += M[j][i]
         ci += 1
 
         if d == 'd':   # down
@@ -106,8 +112,13 @@ def _list_to_matrix(L):
         M.append(L[i:i+c])
     return M
 
-def bonus(L):
+def bonus2(L):
+    # Convert the list to a matrix
     return spiral_matrix_print(_list_to_matrix(L))
+
+def bonus(L):
+    # Use a mapping between the list and the matrix
+    return spiral_matrix_print(L, bonus=True)
 
 def test_bonus(test_func):
     tests = [('L3', L3, SP3), ('L4', L4, SP4), ('L5', L5, SP5)]
