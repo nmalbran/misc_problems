@@ -8,6 +8,23 @@
 # Print:
 #       > A D G H I F C B E
 
+M3 = [['A', 'B', 'C'],
+      ['D', 'E', 'F'],
+      ['G', 'H', 'I']]
+SP3 = 'ADGHIFCBE'
+
+M4 = [['A', 'B', 'C', 'D'],
+      ['E', 'F', 'G', 'H'],
+      ['I', 'J', 'K', 'L'],
+      ['M', 'N', 'O', 'P']]
+SP4 = 'AEIMNOPLHDCBFJKG'
+
+M5 = [['A', 'B', 'C', 'D', 'E'],
+      ['F', 'G', 'H', 'I', 'J'],
+      ['K', 'L', 'M', 'N', 'O'],
+      ['P', 'Q', 'R', 'S', 'T'],
+      ['U', 'V', 'W', 'X', 'Y']]
+SP5 = 'AFKPUVWXYTOJEDCBGLQRSNIHM'
 
 def spiral_matrix_print(M):
     C = len(M)
@@ -24,10 +41,10 @@ def spiral_matrix_print(M):
     ci = 0    # Actual number of element printed
     d = 'd'   # Direction of movement: u,d,l,r
 
-    solution = []
+    solution = ''
 
     while ci < T:
-        solution.append(M[j][i])
+        solution += M[j][i]
         ci += 1
 
         if d == 'd':   # down
@@ -62,24 +79,13 @@ def spiral_matrix_print(M):
             else:
                 i -= 1
 
-    print ' '.join(solution)
+    return solution
+
+def test(test_func):
+    print "M3: %s (%s)" % (test_func(M3) == SP3, test_func(M3))
+    print "M4: %s (%s)" % (test_func(M4) == SP4, test_func(M4))
+    print "M5: %s (%s)" % (test_func(M5) == SP5, test_func(M5))
 
 
-M3 = [['A', 'B', 'C'],
-      ['D', 'E', 'F'],
-      ['G', 'H', 'I']]
-
-M4 = [['A', 'B', 'C', 'D'],
-      ['E', 'F', 'G', 'H'],
-      ['I', 'J', 'K', 'L'],
-      ['M', 'N', 'O', 'P']]
-
-M5 = [['A', 'B', 'C', 'D', 'E'],
-      ['F', 'G', 'H', 'I', 'J'],
-      ['K', 'L', 'M', 'N', 'O'],
-      ['P', 'Q', 'R', 'S', 'T'],
-      ['U', 'V', 'W', 'X', 'Y']]
-
-spiral_matrix_print(M3)
-spiral_matrix_print(M4)
-spiral_matrix_print(M5)
+if __name__ == '__main__':
+    test(spiral_matrix_print)
