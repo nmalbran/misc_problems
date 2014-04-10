@@ -5,7 +5,7 @@
 #       M = A B C
 #           D E F
 #           G H I
-# Print:
+# Return:
 #       > A D G H I F C B E
 #
 #
@@ -13,7 +13,7 @@
 #
 # Given:
 #       M = A B C D E F G H I
-# Print:
+# Return:
 #       > A D G H I F C B E
 #
 
