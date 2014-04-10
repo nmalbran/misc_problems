@@ -7,17 +7,29 @@
 #           G H I
 # Print:
 #       > A D G H I F C B E
+#
+#
+# Bonus: The same, but the matrix is in a list.
+#
+# Given:
+#       M = A B C D E F G H I
+# Print:
+#       > A D G H I F C B E
+#
+
 
 M3 = [['A', 'B', 'C'],
       ['D', 'E', 'F'],
       ['G', 'H', 'I']]
 SP3 = 'ADGHIFCBE'
+L3  = 'ABCDEFGHI'
 
 M4 = [['A', 'B', 'C', 'D'],
       ['E', 'F', 'G', 'H'],
       ['I', 'J', 'K', 'L'],
       ['M', 'N', 'O', 'P']]
 SP4 = 'AEIMNOPLHDCBFJKG'
+L4  = 'ABCDEFGHIJKLMNOP'
 
 M5 = [['A', 'B', 'C', 'D', 'E'],
       ['F', 'G', 'H', 'I', 'J'],
@@ -25,6 +37,7 @@ M5 = [['A', 'B', 'C', 'D', 'E'],
       ['P', 'Q', 'R', 'S', 'T'],
       ['U', 'V', 'W', 'X', 'Y']]
 SP5 = 'AFKPUVWXYTOJEDCBGLQRSNIHM'
+L5  = 'ABCDEFGHIJKLMNOPQRSTUVWXY'
 
 def spiral_matrix_print(M):
     C = len(M)
@@ -82,10 +95,25 @@ def spiral_matrix_print(M):
     return solution
 
 def test(test_func):
-    print "M3: %s (%s)" % (test_func(M3) == SP3, test_func(M3))
-    print "M4: %s (%s)" % (test_func(M4) == SP4, test_func(M4))
-    print "M5: %s (%s)" % (test_func(M5) == SP5, test_func(M5))
+    tests = [('M3', M3, SP3), ('M4', M4, SP4), ('M5', M5, SP5)]
+    for (t,m,l) in tests:
+        print "%s: %s (%s)" % (t, test_func(m) == l, test_func(m))
 
+def _list_to_matrix(L):
+    c = int(len(L) ** (0.5))
+    M = []
+    for i in range(0, len(L), c):
+        M.append(L[i:i+c])
+    return M
+
+def bonus(L):
+    return spiral_matrix_print(_list_to_matrix(L))
+
+def test_bonus(test_func):
+    tests = [('L3', L3, SP3), ('L4', L4, SP4), ('L5', L5, SP5)]
+    for (t,m,l) in tests:
+        print "%s: %s (%s)" % (t, test_func(m) == l, test_func(m))
 
 if __name__ == '__main__':
     test(spiral_matrix_print)
+    test_bonus(bonus)
